@@ -3,13 +3,14 @@ package bsu.edu.cs;
 import com.jayway.jsonpath.JsonPath;
 import java.io.IOException;
 import java.io.InputStream;
-import net.minidev.json.JSONArray;
+import net.minidev.json.JSONArray;import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 
 
 public class RevisionParser {
-    public String parse(InputStream testDataStream) {
-        JsonPath.read(testDataStream, "$...timestamp");
-        JSONArray result = (JSONArray) JsonPath.read(testDataStream, "$...timstamp");
-        return result.get(0).toString();
-    }
+
+
 }
