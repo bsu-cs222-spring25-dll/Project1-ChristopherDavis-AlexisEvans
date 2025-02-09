@@ -60,17 +60,15 @@ public class RevisionParser { ;
     }
 
     public String extractRedirect(){
-        JSONArray outputArray = new JSONArray();
         String output = "";
         try {
             JSONArray parsedRedirect = JsonPath.read(wikiData,"$..to");
 
             if(!parsedRedirect.isEmpty()){
-                output = outputArray.toString();
                 output = String.format("Redirected to %s",parsedRedirect.getFirst().toString());
             }
         }catch (Exception e) {
-            //System.err.println("There seems to be a network error.");
+            System.err.println("There seems to be a network error.");
         }
         return output;
     }
