@@ -1,17 +1,18 @@
 package bsu.edu.cs;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
+
 import java.nio.charset.StandardCharsets;
 
 public class WikipediaConnection {
-    public String searchWikipediaUrl(String articleTitle) throws IOException {
+
+
+    public InputStream searchWikipediaUrl(String articleTitle) {
         String wikipediaUrl = createWikipediaUrl(articleTitle);
-        return getWikipediaData(wikipediaUrl);
+        return retrieveWikipediaData(wikipediaUrl);
     }
 
     public String createWikipediaUrl(String articleTitle){
@@ -20,24 +21,29 @@ public class WikipediaConnection {
                 + encodeTitle + "&rvprop=timestamp|user&rvlimit=21&redirects";
     }
 
-    private String getWikipediaData(String wikipediaUrl)throws IOException {
-        try {
-            URL wikipediaUrlConnection = new URL(wikipediaUrl);
-            URLConnection connection = wikipediaUrlConnection.openConnection();
-            connection.setRequestProperty("User-Agent",
-                    "CS222FirstProject/0.1 (Christopher.davis@bsu.edu)");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
+    public InputStream retrieveWikipediaData(String wikipediaUrl){
+        InputStream output = new InputStream() {
+            @Override
+            public int read(){
+                return 0;
             }
-            return response.toString();
-        } catch (Exception e) {
-            System.err.println("Something went wrong with the connection");
-            return null;
+        };
+        try{
+            @SuppressWarnings("deprecation")
+            URL urlConnection = new URL(wikipediaUrl);
+            URLConnection connection = urlConnection.openConnection();
+            connection.setRequestProperty("User-Agent",
+                    "Revision Reporter/0.1 (nolan.meyer@bsu.edu)");
+            output = connection.getInputStream();
+        }catch (Exception e) {
+            System.err.println("There seems to be a network error.");
         }
+        return output;
     }
+
+
+
+
 
 
 }
