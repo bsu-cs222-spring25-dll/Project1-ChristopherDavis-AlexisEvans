@@ -2,19 +2,16 @@ package bsu.edu.cs;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Scanner;
 
 public class Menu {
     WikipediaConnection wikipediaConnection = new WikipediaConnection();
     RevisionParser revisionParser;
     RevisionFormatter revisionFormatter = new RevisionFormatter();
-    Scanner scanner = new Scanner(System.in);
     UserResponse userResponse = new UserResponse();
-    String userInput;
 
-    public void runMenu(){
+    public void runMenu() {
         userResponse.PrintSearchPrompt();
-        String userInput = userResponse.TakeUserResponse();
+        String userInput = userResponse.TakeUserInput();
         if(validateUserInput(userInput)) {
 
             List<RevisionParts> revisionList = inputSearch(userInput);
@@ -35,7 +32,10 @@ public class Menu {
     }
 
     private void inputSearchPrint(List<RevisionParts> revisionList){
-        System.out.println(revisionParser.extractRedirect());
+        String userInput = userResponse.getUserInput();
+        InputStream wikiResponse = wikipediaConnection.searchWikipediaUrl(userInput);
+        revisionParser = new RevisionParser(wikiResponse);
+        System.out.println(revisionParser.retrieveDestination());
         revisionFormatter.printRevisionList(revisionList);
     }
 

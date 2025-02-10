@@ -3,28 +3,28 @@ package bsu.edu.cs;
 import java.util.Scanner;
 
 public class UserResponse {
-    String userResponse;
+    String userInput;
 
-    public String getUserResponse() {
-        return userResponse;
+    public String getUserInput() {
+        return userInput;
     }
 
     public void setUserResponse(String userResponse) {
-        this.userResponse = userResponse;
+        this.userInput = userResponse;
     }
 
     public UserResponse(){
-        this.userResponse = userResponse;
+        this.userInput = userInput;
     }
     public void PrintSearchPrompt(){
 
         System.out.println("Please enter in the topic you wish to see the recent updates on Wikipedia for. ");
     }
 
-    public String TakeUserResponse(){
+    public String TakeUserInput(){
         Scanner scanner = new Scanner(System.in);
-        userResponse = scanner.nextLine();
-        return userResponse;
+        userInput = scanner.nextLine();
+        return userInput;
     }
 
 

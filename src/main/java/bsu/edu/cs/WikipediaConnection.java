@@ -29,11 +29,10 @@ public class WikipediaConnection {
             }
         };
         try{
-            @SuppressWarnings("deprecation")
             URL urlConnection = new URL(wikipediaUrl);
             URLConnection connection = urlConnection.openConnection();
             connection.setRequestProperty("User-Agent",
-                    "Revision Reporter/0.1 (nolan.meyer@bsu.edu)");
+                    "Revision Reporter/0.1 (Christopher.davis@bsu.edu)");
             output = connection.getInputStream();
         }catch (Exception e) {
             System.err.println("There seems to be a network error.");

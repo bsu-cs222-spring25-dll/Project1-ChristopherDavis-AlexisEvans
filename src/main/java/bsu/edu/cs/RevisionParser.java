@@ -1,9 +1,10 @@
 package bsu.edu.cs;
 
 import com.jayway.jsonpath.JsonPath;
-import java.io.IOException;
+
 import java.io.InputStream;
-import net.minidev.json.JSONArray;import java.io.ByteArrayInputStream;
+import net.minidev.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public class RevisionParser { ;
     WikipediaConnection wikipediaConnection = new WikipediaConnection();
     UserResponse userResponse = new UserResponse();
-    String articleTitle = userResponse.getUserResponse();
+    String articleTitle = userResponse.getUserInput();
     InputStream wikiData;
 
     public InputStream getWikiData() {
@@ -51,7 +52,6 @@ public class RevisionParser { ;
 
         for(Object revision:array){
             if(revision instanceof LinkedHashMap<?,?>) {
-                //@SuppressWarnings("unchecked")
                 LinkedHashMap<String, String> revisionConverted = (LinkedHashMap<String, String>) revision;
                 revisionsList.add(new RevisionParts(revisionConverted.get("user"), revisionConverted.get("timestamp")));
             }
@@ -59,14 +59,12 @@ public class RevisionParser { ;
         return revisionsList;
     }
 
-    public String extractRedirect(){
+    public String retrieveDestination(){
         String output = "";
         try {
             JSONArray parsedRedirect = JsonPath.read(wikiData,"$..to");
+            output = String.format("Directed to %s",parsedRedirect.getFirst());
 
-            if(!parsedRedirect.isEmpty()){
-                output = String.format("Redirected to %s",parsedRedirect.getFirst().toString());
-            }
         }catch (Exception e) {
             System.err.println("There seems to be a network error.");
         }
