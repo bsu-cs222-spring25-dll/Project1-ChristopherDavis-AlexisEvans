@@ -1,7 +1,7 @@
 package bsu.edu.cs;
 
 public class RevisionParts {
-    protected String name;
+    public String name;
     protected String timeStampOfRevision;
 
     public RevisionParts(String name,String timeStampOfRevision){

@@ -10,17 +10,21 @@ import java.nio.charset.StandardCharsets;
 public class WikipediaConnection {
 
 
+    //Searches wikipedia by intaking a String of "articleTitle"
     public InputStream searchWikipediaUrl(String articleTitle) {
         String wikipediaUrl = createWikipediaUrl(articleTitle);
         return retrieveWikipediaData(wikipediaUrl);
     }
 
+    //Responsible for constructing the url and returning that string
     public String createWikipediaUrl(String articleTitle){
         String encodeTitle = URLEncoder.encode(articleTitle, StandardCharsets.UTF_8);
         return "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles="
                 + encodeTitle + "&rvprop=timestamp|user&rvlimit=21&redirects";
     }
 
+    //Gets the data from wikipedia in the form of an input stream.
+    //Code heavily inspired Nolan Meyer and Dakota Coughlin
     public InputStream retrieveWikipediaData(String wikipediaUrl){
         InputStream output = new InputStream() {
             @Override

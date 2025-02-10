@@ -41,7 +41,7 @@ public class RevisionParser { ;
             JSONArray revisionArray = JsonPath.read(wikiData,"$..revisions");
             output = (JSONArray) revisionArray.getFirst();
         }catch (Exception e) {
-            System.err.println("No Wikipedia article could be found");
+            System.err.println("No Wikipedia article could be found. So either it doesn't exist or what you entered was spelled wrong.");
         }
         return output;
 
@@ -63,10 +63,12 @@ public class RevisionParser { ;
         String output = "";
         try {
             JSONArray parsedRedirect = JsonPath.read(wikiData,"$..to");
-            output = String.format("Directed to %s",parsedRedirect.getFirst());
+            if(!parsedRedirect.isEmpty()){
+                output = String.format("Directed to %s",parsedRedirect.getFirst());
+            }
 
         }catch (Exception e) {
-            System.err.println("There seems to be a network error.");
+            System.err.println("There seems to be a network error....sorry...");
         }
         return output;
     }

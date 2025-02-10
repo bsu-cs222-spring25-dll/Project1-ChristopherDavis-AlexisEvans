@@ -9,19 +9,23 @@ public class Menu {
     RevisionFormatter revisionFormatter = new RevisionFormatter();
     UserResponse userResponse = new UserResponse();
 
+
+
+
+    //Inspired by code by Nolan Meyer and Dakota Coughlin
     public void runMenu() {
         userResponse.PrintSearchPrompt();
         String userInput = userResponse.TakeUserInput();
-        if(validateUserInput(userInput)) {
+        if(verifyUserInput(userInput)) {
 
             List<RevisionParts> revisionList = inputSearch(userInput);
 
             if (!revisionList.isEmpty()) {
                 inputSearchPrint(revisionList);
             }
-
-        }else{
-            System.err.println("Please give me a Wikipedia title!");
+        }
+        else{
+            System.out.println("You probably wanted to search for something so either what you typed doesn't exist or you just typed it wrong. Unless you wanted to see this specific message then congratulations");
         }
     }
 
@@ -39,7 +43,7 @@ public class Menu {
         revisionFormatter.printRevisionList(revisionList);
     }
 
-    private boolean validateUserInput(String userInput){
+    private boolean verifyUserInput(String userInput){
         return !userInput.isEmpty();
     }
 
