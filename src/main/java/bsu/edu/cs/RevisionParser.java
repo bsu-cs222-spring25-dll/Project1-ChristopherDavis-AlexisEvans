@@ -11,16 +11,8 @@ import java.util.List;
 
 
 
-public class RevisionParser { ;
-    WikipediaConnection wikipediaConnection = new WikipediaConnection();
-    UserResponse userResponse = new UserResponse();
-    String articleTitle = userResponse.getUserInput();
+public class RevisionParser {
     InputStream wikiData;
-
-    public InputStream getWikiData() {
-
-        return wikiData;
-    }
 
 
     public RevisionParser(InputStream wikiData) {
