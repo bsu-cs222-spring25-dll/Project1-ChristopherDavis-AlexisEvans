@@ -8,17 +8,12 @@ public class UserResponse {
     public String getUserInput() {
         return userInput;
     }
-
     public void setUserResponse(String userResponse) {
         this.userInput = userResponse;
     }
 
-    public UserResponse(){
-        this.userInput = userInput;
-    }
-
     public void PrintSearchPrompt(){
-        System.out.println("Please enter in the topic you wish to see the recent updates on Wikipedia for. ");
+        System.out.println("Please enter in the topic you wish to see the recent updates on Wikipedia for. If you want...");
     }
 
     //Uses a scanner to take in the user's response and returns the value

@@ -4,10 +4,10 @@ import java.util.List;
 
 public class RevisionFormatter {
     public void printRevisionList(List<RevisionParts> revisionList){
-        int lineNumber = 1;
+        int line = 1;
         for(RevisionParts revision:revisionList){
-            System.out.printf("%d.  %s",lineNumber,formatOutput(revision));
-            lineNumber++;
+            System.out.printf("%d.  %s",line,formatOutput(revision));
+            line++;
         }
     }
     public String formatOutput(RevisionParts revision){

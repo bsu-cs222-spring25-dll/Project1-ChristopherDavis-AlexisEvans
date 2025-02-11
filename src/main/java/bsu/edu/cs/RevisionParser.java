@@ -16,6 +16,7 @@ public class RevisionParser {
         this.wikiData = wikiData;
     }
 
+    //Code heavily inspired by Shristi Khadka and Yahaya Fofana
     public List<RevisionParts> parseWikipediaResponse(){
         JSONArray parsedRevisions = retrieveRevisions();
         return convertRevisionsToList(parsedRevisions);

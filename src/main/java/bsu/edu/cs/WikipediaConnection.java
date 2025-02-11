@@ -21,15 +21,15 @@ public class WikipediaConnection {
     }
 
     //Gets the data from wikipedia in the form of an input stream.
-    //Code heavily inspired Nolan Meyer and Dakota Coughlin
+    //Code heavily inspired by Nolan Meyer and Dakota Coughlin
+    //Code heavily inspired by Lizzie and Aja
     public InputStream retrieveWikipediaData(String wikipediaUrl){
         InputStream output = new InputStream() {
             @Override
             public int read(){
                 return 0;
             }
-        };
-        try{
+        };try{
             URL urlConnection = new URL(wikipediaUrl);
             URLConnection connection = urlConnection.openConnection();
             connection.setRequestProperty("User-Agent",
