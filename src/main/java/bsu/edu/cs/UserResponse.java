@@ -17,9 +17,7 @@ public class UserResponse {
         this.userInput = userInput;
     }
 
-
     public void PrintSearchPrompt(){
-
         System.out.println("Please enter in the topic you wish to see the recent updates on Wikipedia for. ");
     }
 
@@ -29,6 +27,4 @@ public class UserResponse {
         userInput = scanner.nextLine();
         return userInput;
     }
-
-
 }

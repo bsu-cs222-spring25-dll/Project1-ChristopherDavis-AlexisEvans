@@ -1,4 +1,8 @@
-Project Name: First Project
+## Project Name: First Project
 
-Added by: Alexis Evans
-Added by: Christopher Davis
+### This project 
+- parses Wikipedia revision data from a sample JSON file
+- formats details for user
+
+### Authors
+Alexis Evans & Christopher Davis
