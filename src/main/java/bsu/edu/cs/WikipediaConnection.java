@@ -4,12 +4,9 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-
 import java.nio.charset.StandardCharsets;
 
 public class WikipediaConnection {
-
-
     //Searches wikipedia by intaking a String of "articleTitle"
     public InputStream searchWikipediaUrl(String articleTitle) {
         String wikipediaUrl = createWikipediaUrl(articleTitle);
@@ -43,10 +40,4 @@ public class WikipediaConnection {
         }
         return output;
     }
-
-
-
-
-
-
 }

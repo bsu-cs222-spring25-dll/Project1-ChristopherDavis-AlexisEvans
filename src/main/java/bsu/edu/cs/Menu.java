@@ -9,17 +9,12 @@ public class Menu {
     RevisionFormatter revisionFormatter = new RevisionFormatter();
     UserResponse userResponse = new UserResponse();
 
-
-
-
     //Inspired by code by Nolan Meyer and Dakota Coughlin
     public void runMenu() {
         userResponse.PrintSearchPrompt();
         String userInput = userResponse.TakeUserInput();
         if(verifyUserInput(userInput)) {
-
             List<RevisionParts> revisionList = inputSearch(userInput);
-
             if (!revisionList.isEmpty()) {
                 inputSearchPrint(revisionList);
             }
@@ -43,15 +38,7 @@ public class Menu {
         revisionFormatter.printRevisionList(revisionList);
     }
 
-    private boolean verifyUserInput(String userInput){
+    protected boolean verifyUserInput(String userInput){
         return !userInput.isEmpty();
     }
-
-
-
-
-
-
-
-
 }

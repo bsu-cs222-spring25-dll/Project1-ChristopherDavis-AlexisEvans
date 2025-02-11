@@ -9,5 +9,4 @@ public class WikipediaConnectionTest {
         WikipediaConnection wikipediaConnection = new WikipediaConnection();
         assertEquals("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Frank+Zappa&rvprop=timestamp|user&rvlimit=21&redirects", wikipediaConnection.createWikipediaUrl("Frank Zappa"));
     }
-
 }

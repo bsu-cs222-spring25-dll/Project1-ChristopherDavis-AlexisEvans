@@ -22,8 +22,8 @@ public class RevisionParserTest {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("sample.json");
         assert sampleFile != null;
         RevisionParser parser = new RevisionParser(sampleFile);
-        List<RevisionParts> firstRevisionName = parser.parseWikipediaResponse();
-        assertEquals("2023-09-07T18:34:43Z", firstRevisionName.getFirst().timeStampOfRevision);
+        List<RevisionParts> firstRevisionTimeStamp = parser.parseWikipediaResponse();
+        assertEquals("2023-09-07T18:34:43Z", firstRevisionTimeStamp.getFirst().timeStampOfRevision);
     }
 
     @Test
@@ -34,13 +34,4 @@ public class RevisionParserTest {
         String parsedRedirect = revisionParser.retrieveDestination();
         assertEquals("Redirected to Frank Zappa",parsedRedirect);
     }
-
-
-
-
-
-
-
-
-
 }

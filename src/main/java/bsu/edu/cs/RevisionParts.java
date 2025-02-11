@@ -8,5 +8,4 @@ public class RevisionParts {
         this.name = name;
         this.timeStampOfRevision = timeStampOfRevision;
     }
-
 }
