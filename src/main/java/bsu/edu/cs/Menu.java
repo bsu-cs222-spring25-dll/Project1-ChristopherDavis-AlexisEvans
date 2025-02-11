@@ -9,9 +9,6 @@ public class Menu {
     RevisionFormatter revisionFormatter = new RevisionFormatter();
     UserResponse userResponse = new UserResponse();
 
-
-
-
     //Inspired by code by Nolan Meyer and Dakota Coughlin
     public void runMenu() {
         userResponse.PrintSearchPrompt();
@@ -42,8 +39,7 @@ public class Menu {
         System.out.println(revisionParser.retrieveDestination());
         revisionFormatter.printRevisionList(revisionList);
     }
-
-    private boolean verifyUserInput(String userInput){
+    protected boolean verifyUserInput(String userInput){
         return !userInput.isEmpty();
     }
 

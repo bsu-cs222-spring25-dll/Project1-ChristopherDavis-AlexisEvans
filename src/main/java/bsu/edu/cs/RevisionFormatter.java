@@ -9,7 +9,6 @@ public class RevisionFormatter {
             System.out.printf("%d.  %s",lineNumber,formatOutput(revision));
             lineNumber++;
         }
-
     }
 
     protected String formatOutput(RevisionParts revision){

@@ -11,7 +11,7 @@ public class RevisionParserTest {
     @Test
     public void getFirstUsernameRevision(){
         InputStream jsonSampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("sample.json");
-        assert jsonSampleFile != null;
+        assert jsonSampleFile == null;
         RevisionParser parser = new RevisionParser(jsonSampleFile);
         List<RevisionParts> firstRevisionName = parser.parseWikipediaResponse();
         assertEquals("Miklogfeather", firstRevisionName.getFirst().name);

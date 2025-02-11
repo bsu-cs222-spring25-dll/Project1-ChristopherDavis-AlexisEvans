@@ -58,7 +58,6 @@ public class RevisionParser {
             if(!parsedRedirect.isEmpty()){
                 output = String.format("Directed to %s",parsedRedirect.getFirst());
             }
-
         }catch (Exception e) {
             System.err.println("There seems to be a network error....sorry...");
         }
