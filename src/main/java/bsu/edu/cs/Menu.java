@@ -14,9 +14,7 @@ public class Menu {
         userResponse.PrintSearchPrompt();
         String userInput = userResponse.TakeUserInput();
         if(verifyUserInput(userInput)) {
-
             List<RevisionParts> revisionList = inputSearch(userInput);
-
             if (!revisionList.isEmpty()) {
                 inputSearchPrint(revisionList);
             }
@@ -39,15 +37,8 @@ public class Menu {
         System.out.println(revisionParser.retrieveDestination());
         revisionFormatter.printRevisionList(revisionList);
     }
+
     protected boolean verifyUserInput(String userInput){
         return !userInput.isEmpty();
     }
-
-
-
-
-
-
-
-
 }

@@ -1,7 +1,6 @@
 package bsu.edu.cs;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RevisionFormatterTest {
@@ -12,5 +11,4 @@ public class RevisionFormatterTest {
         String formattedOutput = revisionFormatter.formatOutput(revisionParts);
         assertEquals("Timestamp: 2023-09-07T17:21:48Z Username: ModernDayTrilobite\n", formattedOutput);
     }
-
 }

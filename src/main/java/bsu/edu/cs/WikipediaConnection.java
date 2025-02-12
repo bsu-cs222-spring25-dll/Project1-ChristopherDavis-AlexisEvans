@@ -7,7 +7,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class WikipediaConnection {
-    //Searches wikipedia by intaking a String of "articleTitle"
+    //Searches wikipedia by taking in a String of "articleTitle"
     public InputStream searchWikipediaUrl(String articleTitle) {
         String wikipediaUrl = createWikipediaUrl(articleTitle);
         return retrieveWikipediaData(wikipediaUrl);

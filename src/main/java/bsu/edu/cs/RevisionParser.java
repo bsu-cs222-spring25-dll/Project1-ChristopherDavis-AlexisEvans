@@ -1,10 +1,8 @@
 package bsu.edu.cs;
 
 import com.jayway.jsonpath.JsonPath;
-
 import java.io.InputStream;
 import net.minidev.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,7 +14,7 @@ public class RevisionParser {
         this.wikiData = wikiData;
     }
 
-    //Code heavily inspired by Shristi Khadka and Yahaya Fofana
+    //Code inspired by Shristi Khadka and Yahaya Fofana
     public List<RevisionParts> parseWikipediaResponse(){
         JSONArray parsedRevisions = retrieveRevisions();
         return convertRevisionsToList(parsedRevisions);
@@ -49,10 +47,10 @@ public class RevisionParser {
         try {
             JSONArray parsedRedirect = JsonPath.read(wikiData,"$..to");
             if(!parsedRedirect.isEmpty()){
-                output = String.format("Directed to %s",parsedRedirect.getFirst());
+                output = String.format("Redirected to %s",parsedRedirect.getFirst());
             }
         }catch (Exception e) {
-            System.err.println("There seems to be a network error....sorry...");
+            System.err.println("There seems to be a network error.... sorry...");
         }
         return output;
     }

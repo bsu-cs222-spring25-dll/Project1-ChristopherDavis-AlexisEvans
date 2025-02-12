@@ -5,9 +5,12 @@ import java.util.Scanner;
 public class UserResponse {
     String userInput = "";
 
+//getter
     public String getUserInput() {
         return userInput;
     }
+
+//setter
     public void setUserResponse(String userResponse) {
         this.userInput = userResponse;
     }
