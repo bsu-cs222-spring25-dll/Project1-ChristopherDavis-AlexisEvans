@@ -17,13 +17,12 @@ import javafx.stage.Stage;
 public class WikipediaGUI extends Application{
     private final WikipediaConnection wikipediaConnection = new WikipediaConnection();
     private final RevisionFormatter revisionFormatter = new RevisionFormatter();
-    //private final List<RevisionParts> revisionList;
 
     @Override
     public void start(Stage stage) throws Exception {
 
         VBox parent = new VBox();
-        parent.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;" + "-fx-border-color: gray; " + "-fx-border-width: 4px; ");
+        parent.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;" + "-fx-border-color: lightBlue; " + "-fx-border-width: 4px; ");
 
         createTitle(parent,80);
 
@@ -45,23 +44,24 @@ public class WikipediaGUI extends Application{
         errorPopUp.setTitle("Error!");
         errorPopUp.getDialogPane().setStyle("-fx-background-color: gray;");
         errorPopUp.getDialogPane().setStyle("-fx-font-size: 20px;");
-        //Stage alertStage = (Stage) errorPopUp.getDialogPane().getScene().getWindow();
 
 
 
-        //Basically the big meat and potatoes of where everything is running like the out put of the data
+        //Basically the big meat and potatoes of where everything is running like the output of the data
         if (searchInput.isEmpty()) {
-            errorPopUp.setContentText("Please enter an article!");
+            errorPopUp.setContentText("You didn't enter anything into the search bar...");
             errorPopUp.showAndWait();
         } else {
 
             try {
                 InputStream wikiResponse = wikipediaConnection.searchWikipediaUrl(searchInput);
                 RevisionParser revisionParser = new RevisionParser(wikiResponse);
-                RevisionParser parser = new RevisionParser(wikiResponse);
+                //RevisionParser parser = new RevisionParser(wikiResponse);
                 output = revisionFormatter.printRevisionList(revisionParser.parseWikipediaResponse());
 
-                Label redirectLabel = new Label(parser.retrieveDestination());
+                //doesn't show a label displaying where it redirected the user
+
+                Label redirectLabel = new Label(revisionParser.retrieveDestination());
                 redirectLabel.setPadding(new Insets(0, 0, 10, 0));
                 parent.getChildren().add(redirectLabel);
 
@@ -93,6 +93,10 @@ public class WikipediaGUI extends Application{
         if(!output.isEmpty()) {
             stage.setScene(new Scene(parent));
         }
+
+        if(!output.isEmpty()) {
+            stage.setScene(new Scene(parent));
+        }
     }
 
 
@@ -100,7 +104,7 @@ public class WikipediaGUI extends Application{
     public void createTitle(VBox parent,int padding) throws FileNotFoundException {
         HBox titleContainer = new HBox();
         Label title = new Label("Wikipedia Revisions");
-        title.setFont(new Font("Arial",35));
+        title.setFont(new Font("Times New Roman",35));
         titleContainer.getChildren().add(title);
         titleContainer.setAlignment(Pos.CENTER);
         titleContainer.setPadding(new Insets(0,0,padding,0));
@@ -118,17 +122,17 @@ public class WikipediaGUI extends Application{
         scrollPane.setMaxHeight(380);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setStyle("-fx-background-color: gray; " + "-fx-border-color: #3498db; " + "-fx-border-width: 4px; " + "-fx-padding: 10px;");
+        scrollPane.setStyle("-fx-background-color: gray; " + "-fx-border-color: #5582e3; " + "-fx-border-width: 4px; " + "-fx-padding: 10px;");
         parent.getChildren().add(scrollPane);
         parent.getChildren().add(outputLabel);
     }
     private Button createGetRevisionsButton(Stage stage, TextField textField) {
-        Button getRevisionsButton = new Button("Get revisions!");
-        getRevisionsButton.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px;");
+        Button getRevisionsButton = new Button("See revisions :D");
+        getRevisionsButton.setStyle("-fx-background-color: #5582e3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px;");
 
-        getRevisionsButton.setOnMouseEntered(_ -> getRevisionsButton.setStyle("-fx-background-color: #2980b9; -fx-text-fill: white;"));
+        getRevisionsButton.setOnMouseEntered(_ -> getRevisionsButton.setStyle("-fx-background-color: #5582e3; -fx-text-fill: white;"));
 
-        getRevisionsButton.setOnMouseExited(_ -> getRevisionsButton.setStyle("-fx-background-color: #3498db; -fx-text-fill: white;"));
+        getRevisionsButton.setOnMouseExited(_ -> getRevisionsButton.setStyle("-fx-background-color: #151c73; -fx-text-fill: white;"));
 
         getRevisionsButton.setOnAction(_ -> {
             try {
@@ -142,7 +146,8 @@ public class WikipediaGUI extends Application{
     }
 
     public void createArticleLabel(VBox parent, Stage stage) throws FileNotFoundException {
-        Label articleLabel = new Label("Enter Article Title: ");
+        Label articleLabel = new Label("Enter Article Title if you want...");
+        articleLabel.setFont(new Font("Times New Roman",18));
         HBox articleTitleInput = new HBox(articleLabel);
         TextField textField = new TextField();
         articleTitleInput.getChildren().add(textField);
@@ -156,4 +161,6 @@ public class WikipediaGUI extends Application{
         buttonContainer.setAlignment(Pos.CENTER);
         parent.getChildren().add(buttonContainer);
     }
+
+
 }
