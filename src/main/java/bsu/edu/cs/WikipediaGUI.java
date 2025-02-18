@@ -67,7 +67,7 @@ public class WikipediaGUI extends Application{
 
             //doesn't display error when article entered in doesn't exist
             } catch (Exception e) {
-                errorPopUp.setContentText(e.getMessage());
+                errorPopUp.setContentText("Article doesn't exist...");
                 errorPopUp.showAndWait();
             }
         }
