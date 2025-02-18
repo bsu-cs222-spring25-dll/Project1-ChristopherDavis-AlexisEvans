@@ -35,7 +35,7 @@ public class Menu {
         InputStream wikiResponse = wikipediaConnection.searchWikipediaUrl(userInput);
         revisionParser = new RevisionParser(wikiResponse);
         System.out.println(revisionParser.retrieveDestination());
-        revisionFormatter.printRevisionList(revisionList);
+        System.out.println(revisionFormatter.printRevisionList(revisionList));
     }
 
     protected boolean verifyUserInput(String userInput){
