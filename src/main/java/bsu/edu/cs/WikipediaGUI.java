@@ -65,6 +65,7 @@ public class WikipediaGUI extends Application{
                 redirectLabel.setPadding(new Insets(0, 0, 10, 0));
                 parent.getChildren().add(redirectLabel);
 
+            //doesn't display error when article entered in doesn't exist
             } catch (Exception e) {
                 errorPopUp.setContentText(e.getMessage());
                 errorPopUp.showAndWait();
