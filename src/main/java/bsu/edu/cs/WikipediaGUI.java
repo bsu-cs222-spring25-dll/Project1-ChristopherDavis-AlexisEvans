@@ -25,7 +25,6 @@ public class WikipediaGUI extends Application{
         parent.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;" + "-fx-border-color: lightBlue; " + "-fx-border-width: 4px; ");
 
         createTitle(parent,80);
-
         createArticleLabel(parent,stage);
 
         Scene scene = new Scene(parent);
@@ -45,9 +44,6 @@ public class WikipediaGUI extends Application{
         errorPopUp.getDialogPane().setStyle("-fx-background-color: gray;");
         errorPopUp.getDialogPane().setStyle("-fx-font-size: 20px;");
 
-
-
-        //Basically the big meat and potatoes of where everything is running like the output of the data
         if (searchInput.isEmpty()) {
             errorPopUp.setContentText("You didn't enter anything into the search bar...");
             errorPopUp.showAndWait();
@@ -56,22 +52,16 @@ public class WikipediaGUI extends Application{
             try {
                 InputStream wikiResponse = wikipediaConnection.searchWikipediaUrl(searchInput);
                 RevisionParser revisionParser = new RevisionParser(wikiResponse);
-                //RevisionParser parser = new RevisionParser(wikiResponse);
                 output = revisionFormatter.printRevisionList(revisionParser.parseWikipediaResponse());
-
-                //doesn't show a label displaying where it redirected the user
 
                 Label redirectLabel = new Label(revisionParser.retrieveDestination());
                 redirectLabel.setPadding(new Insets(0, 0, 10, 0));
                 parent.getChildren().add(redirectLabel);
-
-            //doesn't display error when article entered in doesn't exist
             } catch (Exception e) {
                 errorPopUp.setContentText("Article doesn't exist...");
                 errorPopUp.showAndWait();
             }
         }
-
         createOutputLabel(parent, output);
 
         Region spacer = new Region();
@@ -94,12 +84,10 @@ public class WikipediaGUI extends Application{
         if(!output.isEmpty()) {
             stage.setScene(new Scene(parent));
         }
-
         if(!output.isEmpty()) {
             stage.setScene(new Scene(parent));
         }
     }
-
 
     //The methods creating the actual buttons can be greatly modified for our liking
     public void createTitle(VBox parent,int padding) throws FileNotFoundException {
@@ -111,6 +99,7 @@ public class WikipediaGUI extends Application{
         titleContainer.setPadding(new Insets(0,0,padding,0));
         parent.getChildren().add(titleContainer);
     }
+    
     public void createOutputLabel(VBox parent, String output){
         Label outputLabel = new Label(output);
         outputLabel.setMaxWidth(600);
@@ -127,6 +116,7 @@ public class WikipediaGUI extends Application{
         parent.getChildren().add(scrollPane);
         parent.getChildren().add(outputLabel);
     }
+    
     private Button createGetRevisionsButton(Stage stage, TextField textField) {
         Button getRevisionsButton = new Button("See revisions :D");
         getRevisionsButton.setStyle("-fx-background-color: #5582e3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px;");
@@ -142,7 +132,6 @@ public class WikipediaGUI extends Application{
                 throw new RuntimeException(e);
             }
         });
-
         return getRevisionsButton;
     }
 
@@ -162,6 +151,4 @@ public class WikipediaGUI extends Application{
         buttonContainer.setAlignment(Pos.CENTER);
         parent.getChildren().add(buttonContainer);
     }
-
-
 }
